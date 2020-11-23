@@ -1,0 +1,32 @@
+version: "3.3"
+
+services:
+  gmail_scanner:
+    build:
+      context: .
+      dockerfile: docker/Gmail.Dockerfile
+    volumes:
+    - ./:/usr/src/app
+    env_file:
+    - .env
+    restart: always
+
+  stasher_bot:
+    build:
+      context: .
+      dockerfile: ./docker/Stasher.Dockerfile
+    volumes:
+      - ./:/usr/src/app
+    env_file:
+      - .env
+    restart: always
+
+  currency_updater:
+    build:
+      context: .
+      dockerfile: docker/Currency.Dockerfile
+    volumes:
+      - ./:/usr/src/app
+    env_file:
+      - .env
+    restart: always
